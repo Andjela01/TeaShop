@@ -1,0 +1,31 @@
+<a href="admin.php?action=home">Povratak u Meni</a>
+<table>
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Naziv</th>
+			<th>Opis</th>
+			<th>Cena</th>
+			<th>Akcije</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for tea in teas %}
+			<tr>
+				<td>{{ tea.id }}</td>
+				<td>{{ tea.name }}</td>
+				<td>{{ tea.description }}</td>
+				<td>{{ tea.price }}</td>
+				<td>
+					<a href="?action=edit&id={{ tea.id }}">Izmeni</a>
+					<a href="?action=delete&id={{ tea.id }}" onclick="return confirm('Da li ste sigurni da želite da obrišete?');">Obriši</a>
+				</td>
+			</tr>
+		{% else %}
+			<tr>
+				<td colspan="5">Nema čajeva.</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+<a href="?action=add">Dodaj novi čaj</a>

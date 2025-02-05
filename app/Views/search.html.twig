@@ -1,0 +1,35 @@
+<h1>Pretraga čajeva</h1>
+<form method="POST">
+	<input type="text" name="search" value="{{ search }}" placeholder="Pretraži čajeve">
+	<button type="submit">Pretraži</button>
+</form>
+
+{% if teas is not empty %}
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Ime</th>
+				<th>Tip</th>
+				<th>Cena</th>
+				<th>Opis</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for tea in teas %}
+				<tr>
+					<td>{{ tea.id }}</td>
+					<td>{{ tea.name }}</td>
+					<td>{{ tea.type }}</td>
+					<td>{{ tea.price }}</td>
+					<td>{{ tea.description }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% else %}
+	<p>Nema rezultata za pretragu.</p>
+{% endif %}
+
+
+<a href="manager.php">Vrati se na meni</a>
