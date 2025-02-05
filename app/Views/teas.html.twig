@@ -1,0 +1,27 @@
+<a href="/project/index.php?action=home">Povratak u Meni</a>
+<h1>Čajevi</h1>
+<p>
+	<a href="cart.php">Vidi korpu</a>
+</p>
+<form method="POST">
+	<select name="category" id="category" onchange="this.form.submit()">
+		<option value="">All</option>
+		{% for category in categories %}
+			<option value="{{ category.id }}" {% if selectedCategory == category.id %} selected {% endif %}>{{ category.name }}</option>
+		{% endfor %}
+	</select>
+</form>
+
+<div class="tea-list">
+	{% for tea in teas %}
+		<div class="tea-item">
+			<h2>{{ tea.name }}</h2>
+			<p>{{ tea.description }}</p>
+			<p>Cena: Din{{ tea.price }}</p>
+			<form method="POST" action="teas.php">
+				<input type="hidden" name="tea_id" value="{{ tea.id }}">
+				<button type="submit" name="add_to_cart">Dodaj u korpu</button>
+			</form>
+		</div>
+	{% endfor %}
+</div>

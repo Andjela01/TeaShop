@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Prijava
+{% endblock %}
+
+{% block content %}
+	<h1>Prijava</h1>
+	{% if errors is defined %}
+		{% for error in errors %}
+			<p style="color: red;">{{ error }}</p>
+		{% endfor %}
+	{% endif %}
+	{% if successMessage is defined and successMessage is not empty %}
+		<div class="success">
+			{{ successMessage }}
+		</div>
+	{% endif %}
+
+	<form action="login.php" method="POST">
+		<label for="username">Korisničko ime:</label>
+		<input type="text" id="username" name="username">
+
+		<label for="password">Lozinka:</label>
+		<input type="password" id="password" name="password">
+
+		<button type="submit">Prijavi se</button>
+	</form>
+	<p>Nemate nalog?
+		<a href="/project/public/register.php">Registrujte se</a>
+	</p>
+{% endblock %}

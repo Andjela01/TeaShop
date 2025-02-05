@@ -1,0 +1,24 @@
+<h1>Uredi Čaj</h1>
+<form action="?action=edit" method="POST">
+	<input type="hidden" name="id" value="{{ tea.id }}">
+
+	<label for="name">Ime čaja:</label>
+	<input type="text" name="name" id="name" value="{{ tea.name }}" required>
+
+	<label for="description">Opis:</label>
+	<textarea name="description" id="description" required>{{ tea.description }}</textarea>
+
+	<label for="price">Cena:</label>
+	<input type="number" name="price" id="price" value="{{ tea.price }}" step="0.01" required>
+
+	<label for="category_id">Kategorija:</label>
+	<select name="category_id" id="category_id" required>
+		{% for category in categories %}
+			<option value="{{ category.id }}">{{ category.name }}</option>
+		{% endfor %}
+	</select>
+	<input type="number" name="stock_quantity" placeholder="Količina" required>
+
+
+	<button type="submit">Sačuvaj Izmene</button>
+</form>

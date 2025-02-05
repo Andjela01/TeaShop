@@ -1,0 +1,66 @@
+<h1>Vaša Korpa</h1>
+
+{% if cartItems|length > 0 %}
+	<table>
+		<thead>
+			<tr>
+				<th>Naziv proizvoda</th>
+				<th>Cena (RSD)</th>
+				<th>Količina</th>
+				<th>Ukupno (RSD)</th>
+				<th>Akcija</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for item in cartItems %}
+				<tr>
+					<td>{{ item.name }}</td>
+					<td>{{ item.price | number_format(2, ',', '.') }}
+						RSD</td>
+					<td>
+						<form method="post" action="cart.php">
+							<input type="hidden" name="cart_id" value="{{ item.id }}">
+							<input type="number" name="quantity" value="{{ item.quantity }}" min="1">
+							<input type="submit" name="update_quantity" value="Ažuriraj">
+						</form>
+					</td>
+					<td>{{ item.total_price | number_format(2, ',', '.') }}
+						RSD</td>
+					<td>
+						<form method="post" action="cart.php">
+							<input type="hidden" name="cart_id" value="{{ item.id }}">
+							<input type="submit" name="remove_item" value="Ukloni">
+						</form>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<h2>Ukupna cena:
+		{{ totalAmount | number_format(2, ',', '.') }}
+		RSD</h2>
+
+	<form method="post" action="cart.php">
+		<h4>Unesite adresu i broj telefona za dostavu</h4>
+		<label for="address">Adresa:</label>
+		<input type="text" name="address" id="address" required>
+		<br>
+		<label for="phone">Broj telefona:</label>
+		<input type="text" name="phone" id="phone" required>
+		<br>
+		<button type="submit" name="checkout">Poruči</button>
+	</form>
+{% else %}
+	<p>Vaša korpa je prazna.</p>
+{% endif %}
+
+<a href="teas.php?action=home">Nastavi sa kupovinom</a>
+
+{% if success_message %}
+	<div class="alert alert-success">{{ success_message }}</div>
+{% endif %}
+{% if error_message %}
+	<div class="alert alert-danger">
+		{{ error_message }}
+	</div>
+{% endif %}

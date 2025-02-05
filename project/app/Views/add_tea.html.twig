@@ -1,0 +1,23 @@
+<h1>Dodaj Čaj</h1>
+<form action="?action=add" method="POST">
+	<label for="name">Ime čaja:</label>
+	<input type="text" name="name" id="name" required>
+
+	<label for="description">Opis:</label>
+	<textarea name="description" id="description" required></textarea>
+
+	<label for="price">Cena:</label>
+	<input type="number" name="price" id="price" step="0.01" required>
+
+	<label for="category_id">Kategorija:</label>
+	<select name="category_id" id="category_id" required>
+		{% for category in categories %}
+			<option value="{{ category.id }}">{{ category.name }}</option>
+		{% endfor %}
+	</select>
+	<label for="stock_quantity">Količina na skladištu:</label>
+	<input type="number" name="stock_quantity" placeholder="Količina" required>
+
+
+	<button type="submit">Dodaj Čaj</button>
+</form>

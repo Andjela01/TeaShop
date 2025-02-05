@@ -1,0 +1,10 @@
+<form action="?action=edit" method="POST">
+	<input type="hidden" name="id" value="{{ user.id }}">
+	<label for="role">Promeni status uloge:</label>
+	<select name="role" required>
+		<option value="admin" {% if user.role == 'admin' %} selected {% endif %}>Admin</option>
+		<option value="manager" {% if user.role == 'manager' %} selected {% endif %}>Manager</option>
+		<option value="customer" {% if user.role == 'customer' %} selected {% endif %}>Customer</option>
+	</select>
+	<button type="submit">Izmeni korisnika</button>
+</form>

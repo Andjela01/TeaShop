@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Registracija
+{% endblock %}
+
+{% block content %}
+	<h2>Registracija</h2>
+
+	{% if errors %}
+		<ul>
+			{% for error in errors %}
+				<li>{{ error }}</li>
+			{% endfor %}
+		</ul>
+	{% endif %}
+
+	<form action="register.php" method="POST">
+		<input type="text" name="username" placeholder="Korisničko ime" required>
+		<input type="email" name="email" placeholder="E-mail" required>
+		<input type="password" name="password" placeholder="Lozinka" required>
+		<button type="submit">Registruj se</button>
+	</form>
+{% endblock %}
